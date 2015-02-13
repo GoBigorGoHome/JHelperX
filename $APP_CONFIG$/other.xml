@@ -69,6 +69,9 @@
             <option name="com.jetbrains.objc.util.OCDeclarationKind" value="DeallocMethod" />
           </class>
         </Objective-C-extensions>
+        <XML>
+          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+        </XML>
         <codeStyleSettings language="ObjectiveC">
           <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
           <option name="ELSE_ON_NEW_LINE" value="true" />
