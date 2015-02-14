@@ -1,4 +1,4 @@
-<keymap version="1" name="IntelliJ IDEA Classic (OS X) copy" parent="Mac OS X">
+<keymap version="1" name="riad-osx-keymap" parent="Mac OS X">
   <action id="Console.Execute.Multiline" />
   <action id="EditorSplitLine" />
   <action id="ShowIntentionActions">
