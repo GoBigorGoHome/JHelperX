@@ -21,6 +21,12 @@
   <component name="CPPToolchains">
     <option name="detectedVersion" value="3" />
   </component>
+  <component name="ErrorReportConfigurable">
+    <option name="ITN_LOGIN" value="RiaD" />
+    <option name="ITN_PASSWORD_CRYPT" value="KTwnTTRzd0wkN2EzQiZsZ0pELi4=" />
+    <option name="KEEP_ITN_PASSWORD" value="true" />
+    <option name="EMAIL" value="" />
+  </component>
   <component name="ExternalResourceManagerImpl">
     <ignored-resource url="http://relaxng.org/ns/compatibility/annotations/1.0" />
     <ignored-resource url="http://www.w3.org/1998/Math/MathML" />
