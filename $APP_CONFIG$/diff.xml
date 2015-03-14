@@ -4,9 +4,9 @@
       <entry key="ChangesView">
         <PlaceSettings />
       </entry>
-    </option>
-    <option name="SHARED_SETTINGS">
-      <SharedSettings />
+      <entry key="Default">
+        <PlaceSettings />
+      </entry>
     </option>
   </component>
 </application>
