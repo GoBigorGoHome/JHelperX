@@ -5,6 +5,7 @@
       <mapping ext="template" type="ObjectiveC" />
       <mapping pattern="fors" type="PLAIN_TEXT" />
       <mapping pattern="LICENSE" type="PLAIN_TEXT" />
+      <mapping ext="frag" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
