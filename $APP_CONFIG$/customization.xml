@@ -30,5 +30,10 @@
       <path value="Main Toolbar" />
       <option name="myInitialPosition" value="-1" />
     </group>
+    <group value="name.admitriev.jhelper.actions.SwitchCMakeConfigurationAction" is_action="true" action_type="1" position="27">
+      <path value="root" />
+      <path value="Main Toolbar" />
+      <option name="myInitialPosition" value="-1" />
+    </group>
   </component>
 </application>
