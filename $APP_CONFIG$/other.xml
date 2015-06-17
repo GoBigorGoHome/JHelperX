@@ -7,12 +7,12 @@
             <id />
           </State>
           <State>
-            <id>Code style issues</id>
+            <id>General</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>ProblematicWhitespace</id>
+            <id>Spelling</id>
           </State>
         </selected-state>
       </profile-state>
