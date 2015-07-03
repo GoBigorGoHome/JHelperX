@@ -1,33 +1,5 @@
 <application>
-  <component name="AppInspectionProfilesVisibleTreeState">
-    <entry key="Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>General</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>Spelling</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
-  </component>
   <component name="CPPToolchains">
     <option name="detectedVersion" value="3" />
-  </component>
-  <component name="ErrorReportConfigurable">
-    <option name="ITN_LOGIN" value="RiaD" />
-    <option name="ITN_PASSWORD_CRYPT" value="KTwnTTRzd0wkN2EzQiZsZ0pELi4=" />
-    <option name="KEEP_ITN_PASSWORD" value="true" />
-    <option name="EMAIL" value="" />
-  </component>
-  <component name="OCNewClassSettings">
-    <option name="mySkipAddingToTheProject" value="true" />
   </component>
 </application>
