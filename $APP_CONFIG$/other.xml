@@ -27,4 +27,7 @@
     <option name="KEEP_ITN_PASSWORD" value="true" />
     <option name="EMAIL" value="" />
   </component>
+  <component name="OCNewClassSettings">
+    <option name="mySkipAddingToTheProject" value="true" />
+  </component>
 </application>
