@@ -6,19 +6,6 @@
           <envs />
         </ADDITIONAL_GENERATION_ENVIRONMENT>
       </component>
-      <component name="InspectionProjectProfileManager">
-        <profile version="1.0">
-          <option name="myName" value="Project Default" />
-          <inspection_tool class="InconsistentLineSeparators" enabled="true" level="WARNING" enabled_by_default="true" />
-          <inspection_tool class="LossyEncoding" enabled="true" level="WARNING" enabled_by_default="true" />
-          <inspection_tool class="ProblematicWhitespace" enabled="true" level="WARNING" enabled_by_default="true" />
-          <inspection_tool class="TodoComment" enabled="true" level="WARNING" enabled_by_default="true" />
-          <inspection_tool class="UnusedDefine" enabled="true" level="WARNING" enabled_by_default="true" />
-        </profile>
-        <option name="PROJECT_PROFILE" value="Project Default" />
-        <option name="USE_PROJECT_PROFILE" value="true" />
-        <version value="1.0" />
-      </component>
       <component name="NamedScopeManager">
         <order />
       </component>
@@ -53,7 +40,7 @@
       </component>
       <component name="ProjectRootManager" version="2" />
       <component name="PropertiesComponent">
-        <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+        <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
         <property name="settings.editor.splitter.proportion" value="0.2" />
       </component>
     </defaultProject>
