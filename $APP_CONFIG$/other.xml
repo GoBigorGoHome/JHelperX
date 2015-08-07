@@ -18,7 +18,4 @@
   <component name="CPPToolchains">
     <option name="detectedVersion" value="3" />
   </component>
-  <component name="OCNewClassSettings">
-    <option name="mySkipAddingToTheProject" value="true" />
-  </component>
 </application>
