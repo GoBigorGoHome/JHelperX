@@ -14,6 +14,10 @@
   <Objective-C>
     <option name="INDENT_NAMESPACE_MEMBERS" value="0" />
     <option name="INDENT_INSIDE_CODE_BLOCK" value="2" />
+    <option name="FUNCTION_PARAMETERS_ALIGN_MULTILINE" value="false" />
+    <option name="FUNCTION_CALL_ARGUMENTS_ALIGN_MULTILINE" value="false" />
+    <option name="CLASS_CONSTRUCTOR_INIT_LIST_ALIGN_MULTILINE" value="false" />
+    <option name="SUPERCLASS_LIST_ALIGN_MULTILINE" value="false" />
     <option name="SPACE_BEFORE_POINTER_IN_DECLARATION" value="false" />
     <option name="SPACE_AFTER_POINTER_IN_DECLARATION" value="true" />
     <option name="SPACE_BEFORE_REFERENCE_IN_DECLARATION" value="false" />
@@ -48,6 +52,11 @@
   </XML>
   <codeStyleSettings language="ObjectiveC">
     <option name="BLANK_LINES_AROUND_METHOD_IN_INTERFACE" value="0" />
+    <option name="ALIGN_MULTILINE_FOR" value="false" />
+    <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="false" />
+    <option name="ALIGN_MULTILINE_ASSIGNMENT" value="false" />
+    <option name="ALIGN_MULTILINE_TERNARY_OPERATION" value="false" />
+    <option name="ALIGN_MULTILINE_ARRAY_INITIALIZER_EXPRESSION" value="false" />
     <option name="IF_BRACE_FORCE" value="3" />
     <option name="DOWHILE_BRACE_FORCE" value="3" />
     <option name="WHILE_BRACE_FORCE" value="3" />
