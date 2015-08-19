@@ -1,0 +1,54 @@
+Index: scripts/production_start_xor.sh
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- scripts/production_start_xor.sh	(revision 6e0aa51cedc9b4f543be8c04a5f480542301e8c4)
++++ scripts/production_start_xor.sh	(revision )
+@@ -23,6 +23,13 @@
+   cd -
+ }
+ 
++function kill_old_screens
++{
++  for session in $(screen -ls | grep -o '[0-9]*\.xor'); do
++    screen -S "${session}" -X quit;
++  done
++}
++
+ function do_run_xor
+ {
+   if [[ -n $2 ]]; then
+@@ -33,7 +40,7 @@
+   CONFIGS="$CONFIGS $3"
+   echo "run: $1/build/xor $CONFIGS"
+   /usr/bin/screen -S xor -c $1/scripts/screen_cfg.conf -d -m \
+-    $1/scripts/start_xor_with_logs.sh $CONFIGS > /dev/null 2>&1
++    $1/scripts/start_xor_with_logs.sh --nomonitor $CONFIGS > /dev/null 2>&1
+ }
+ 
+ function main
+@@ -86,14 +93,15 @@
+   BASE_DIR=$SCRIPTS_DIR/../
+   cd $BASE_DIR
+ 
+-  if [[ -n $RISK_SERVER ]]; then
+-    do_build
+-  else
+-    $SCRIPTS_DIR/manage_strategies.sh clone
+-    do_build
+-    $SCRIPTS_DIR/manage_strategies.sh clean
+-  fi
+-  do_configure $BASE_DIR
++#  if [[ -n $RISK_SERVER ]]; then
++#    do_build
++#  else
++#    $SCRIPTS_DIR/manage_strategies.sh clone
++#    do_build
++#    $SCRIPTS_DIR/manage_strategies.sh clean
++#  fi
++#  do_configure $BASE_DIR
++  kill_old_screens
+   do_run_xor $BASE_DIR "$RISK_SERVER" $EXTRA_CONFIG
+ }
+ 
