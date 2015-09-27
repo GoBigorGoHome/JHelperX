@@ -16,6 +16,7 @@
     <option name="FUNCTION_PARAMETERS_WRAP" value="5" />
     <option name="FUNCTION_PARAMETERS_NEW_LINE_AFTER_LPAR" value="true" />
     <option name="FUNCTION_PARAMETERS_NEW_LINE_BEFORE_RPAR" value="true" />
+    <option name="FUNCTION_CALL_ARGUMENTS_WRAP" value="5" />
     <option name="FUNCTION_CALL_ARGUMENTS_NEW_LINE_AFTER_LPAR" value="true" />
     <option name="FUNCTION_CALL_ARGUMENTS_NEW_LINE_BEFORE_RPAR" value="true" />
     <option name="TEMPLATE_PARAMETERS_WRAP" value="5" />
@@ -25,7 +26,7 @@
     <option name="CLASS_CONSTRUCTOR_INIT_LIST_NEW_LINE_BEFORE_COLON" value="0" />
     <option name="CLASS_CONSTRUCTOR_INIT_LIST_NEW_LINE_AFTER_COLON" value="2" />
     <option name="SUPERCLASS_LIST_BEFORE_COLON" value="0" />
-    <option name="SUPERCLASS_LIST_AFTER_COLON" value="1" />
+    <option name="SUPERCLASS_LIST_AFTER_COLON" value="2" />
     <option name="SPACE_BEFORE_TEMPLATE_DECLARATION_LT" value="true" />
     <option name="SPACE_WITHIN_TEMPLATE_DOUBLE_GT" value="false" />
     <option name="SPACE_BEFORE_POINTER_IN_DECLARATION" value="false" />
