@@ -1,0 +1,14 @@
+<inspections profile_name="riad" version="1.0">
+  <option name="myName" value="riad" />
+  <inspection_tool class="DuplicateSwitchCase" enabled="true" level="ERROR" enabled_by_default="true" />
+  <inspection_tool class="InconsistentLineSeparators" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="KRUnspecifiedParameters" enabled="true" level="ERROR" enabled_by_default="true" />
+  <inspection_tool class="LossyEncoding" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="MissingReturn" enabled="true" level="ERROR" enabled_by_default="true" />
+  <inspection_tool class="OCSimplifyInspection" enabled="true" level="WARNING" enabled_by_default="true">
+    <option name="enableSimplifyIfWithConstantBranch" value="true" />
+  </inspection_tool>
+  <inspection_tool class="ProblematicWhitespace" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="TodoComment" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="UnusedDefine" enabled="true" level="WARNING" enabled_by_default="true" />
+</inspections>

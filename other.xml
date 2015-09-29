@@ -14,6 +14,23 @@
         </selected-state>
       </profile-state>
     </entry>
+    <entry key="riad">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>C/C++</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>C/C++</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="CPPToolchains">
     <option name="detectedVersion" value="4" />
