@@ -16,16 +16,10 @@
               <State>
                 <id />
               </State>
-              <State>
-                <id>C/C++</id>
-              </State>
-              <State>
-                <id>Data flow analysisC/C++</id>
-              </State>
             </expanded-state>
             <selected-state>
               <State>
-                <id>Type checksC/C++</id>
+                <id>C/C++</id>
               </State>
             </selected-state>
           </profile-state>
@@ -46,7 +40,7 @@
       </component>
       <component name="ProjectRootManager" version="2" />
       <component name="PropertiesComponent">
-        <property name="settings.editor.selected.configurable" value="Errors" />
+        <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
         <property name="settings.editor.splitter.proportion" value="0.2" />
       </component>
     </defaultProject>

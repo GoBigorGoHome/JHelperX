@@ -20,13 +20,10 @@
           <State>
             <id />
           </State>
-          <State>
-            <id>C/C++</id>
-          </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>C/C++</id>
+            <id>BashSupport</id>
           </State>
         </selected-state>
       </profile-state>
@@ -34,5 +31,8 @@
   </component>
   <component name="CPPToolchains">
     <option name="detectedVersion" value="4" />
+  </component>
+  <component name="OCNewClassSettings">
+    <option name="mySkipAddingToTheProject" value="true" />
   </component>
 </application>
