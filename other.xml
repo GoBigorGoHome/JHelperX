@@ -63,9 +63,12 @@
             <pair source="c" header="h" />
           </extensions>
         </Objective-C-extensions>
+        <XML>
+          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+        </XML>
       </value>
     </option>
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="riad" />
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="AimFund" />
   </component>
   <component name="OCNewClassSettings">
     <option name="mySkipAddingToTheProject" value="true" />
