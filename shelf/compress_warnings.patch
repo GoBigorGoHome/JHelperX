@@ -1,0 +1,17 @@
+Index: scripts/xormail.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- scripts/xormail.py	(revision c92facae7410a1a89cc8a1c129e640b89c83b047)
++++ scripts/xormail.py	(revision )
+@@ -56,7 +56,8 @@
+ 
+ if __name__ == "__main__":
+   if len(sys.argv) == 2:
+-    sendmail(sys.argv[1], "".join(sys.stdin.readlines()))
++    input = codecs.getreader('cp1251')(sys.stdin)
++    sendmail(sys.argv[1], "".join(input.readlines()))
+   elif len(sys.argv) == 3:
+      sendmail(sys.argv[1], sys.argv[2])
+   else:
