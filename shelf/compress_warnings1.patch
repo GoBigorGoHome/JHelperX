@@ -1,0 +1,91 @@
+Index: src/monitoring/log_handler/log_handler.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/monitoring/log_handler/log_handler.h	(revision )
++++ src/monitoring/log_handler/log_handler.h	(revision )
+@@ -0,0 +1,7 @@
++// Confidential Information. "AIM High Tech" LLC
++#pragma once
++
++#include "base/string.h"
++namespace xor_platform {
++String get_server_name();
++} // namespace xor_platform
+\ No newline at end of file
+Index: src/monitoring/log_handler/mail_node.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/monitoring/log_handler/mail_node.cpp	(revision c92facae7410a1a89cc8a1c129e640b89c83b047)
++++ src/monitoring/log_handler/mail_node.cpp	(revision )
+@@ -13,7 +13,7 @@
+ }
+ 
+ void MailNode::process(Event event) {
+-  auto command = "../scripts/xormail.py " +
++  auto command = "../scripts/xormail.py " +;
+       bash_quote(event.get<std::string>(subject_field_)) + " " +
+       bash_quote(event.get<std::string>(message_field_));
+   auto ret_code = system(command.c_str());
+Index: src/monitoring/log_handler/log_handler.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/monitoring/log_handler/log_handler.cpp	(revision c92facae7410a1a89cc8a1c129e640b89c83b047)
++++ src/monitoring/log_handler/log_handler.cpp	(revision )
+@@ -2,6 +2,7 @@
+ #include "inner_node.h"
+ #include "base/log.h"
+ #include "slack.h"
++#include "log_handler.h"
+ #include "base/runnable.h"
+ #include "base/hostname.h"
+ #include "base/perf_time.h"
+@@ -25,11 +26,13 @@
+ static const size_t kEmptyIterationsToStop = 10;
+ static const Nanoseconds kOuterLoopSleep = 1000000;
+ static const Nanoseconds kTickRate = 1000000000;
++static String kServerName;
+ 
+ class LogHandler : public Runnable {
+ public:
+   LogHandler(const std::string& log_filename, const String& server_name, boost::gregorian::date date) :
+-      Runnable("log_handler"), log_filename_(log_filename), server_name_(server_name), root_node_(root_node()), date_(date) {
++      Runnable("log_handler"), log_filename_(log_filename), root_node_(root_node()), date_(date) {
++    kServerName = server_name;
+   }
+ 
+ protected:
+@@ -37,7 +40,6 @@
+ 
+ private:
+   std::string log_filename_;
+-  String server_name_;
+   std::shared_ptr<Node> root_node_;
+   boost::gregorian::date date_;
+ };
+@@ -54,7 +56,6 @@
+       0
+   } + boost::posix_time::microseconds(lexical_cast<int>(StringView(str.begin() + 9, 6)));
+ }
+-} // namespace
+ 
+ Nanoseconds parse_timestamp(boost::gregorian::date& day, std::string& line, const Nanoseconds& previous_timestamp) {
+   size_t space_position = line.find(' ');
+@@ -177,6 +178,12 @@
+   }
+   slack::send("Log handler: xor on *" + server_name_.std_str() + "* stopped");
+ }
++} // namespace
++
++String get_server_name() {
++  return kServerName;
++}
++
+ } //namespace xor_platform
+ using namespace xor_platform;
+ 
