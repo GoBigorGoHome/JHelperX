@@ -7,6 +7,7 @@
       <mapping pattern="LICENSE" type="PLAIN_TEXT" />
       <mapping ext="frag" type="PLAIN_TEXT" />
       <mapping ext="vert" type="PLAIN_TEXT" />
+      <mapping ext="py" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
