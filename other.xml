@@ -59,6 +59,9 @@
     </option>
     <option name="PREFERRED_PROJECT_CODE_STYLE" value="AimFund" />
   </component>
+  <component name="CppNewDialogSettings">
+    <option name="addNewFilesToProject" value="false" />
+  </component>
   <component name="ErrorReportConfigurable">
     <option name="ITN_LOGIN" value="RiaD" />
     <option name="ITN_PASSWORD_CRYPT" value="KTwnTTRzd0wkN2EzQiZsZ0pELi4=" />
