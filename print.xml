@@ -1,7 +1,7 @@
 <application>
   <component name="PrintSettings">
     <option name="printScope" value="1" />
-    <option name="FONT_NAME" value="AlBayan" />
+    <option name="FONT_NAME" value="Courier" />
     <option name="FOOTER_HEADER_FONT_NAME" value="AlBayan" />
   </component>
 </application>
