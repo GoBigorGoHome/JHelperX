@@ -3,7 +3,6 @@
   <inspection_tool class="DuplicateSwitchCase" enabled="true" level="ERROR" enabled_by_default="true" />
   <inspection_tool class="InconsistentLineSeparators" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="KRUnspecifiedParameters" enabled="true" level="ERROR" enabled_by_default="true" />
-  <inspection_tool class="LossyEncoding" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="MissingReturn" enabled="true" level="ERROR" enabled_by_default="true" />
   <inspection_tool class="OCSimplifyInspection" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="enableSimplifyIfWithConstantBranch" value="true" />
