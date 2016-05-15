@@ -1,6 +1,12 @@
 <keymap version="1" name="riad-osx-keymap" parent="Mac OS X">
   <action id="Console.Execute.Multiline" />
+  <action id="ContextHelp" />
   <action id="EditorSplitLine" />
+  <action id="QuickJavaDoc">
+    <keyboard-shortcut first-keystroke="ctrl j" />
+    <mouse-shortcut keystroke="control button2" />
+    <keyboard-shortcut first-keystroke="f1" />
+  </action>
   <action id="ShowIntentionActions">
     <keyboard-shortcut first-keystroke="meta enter" />
   </action>
