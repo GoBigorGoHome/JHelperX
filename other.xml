@@ -21,7 +21,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>Spelling</id>
+            <id>ProblematicWhitespace</id>
           </State>
         </selected-state>
       </profile-state>
