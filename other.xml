@@ -10,20 +10,18 @@
             <id>C/C++</id>
           </State>
           <State>
-            <id>Declaration orderC/C++</id>
-          </State>
-          <State>
             <id>General</id>
           </State>
           <State>
-            <id>Type checksC/C++</id>
+            <id>GeneralC/C++</id>
+          </State>
+          <State>
+            <id>HTML</id>
+          </State>
+          <State>
+            <id>Python</id>
           </State>
         </expanded-state>
-        <selected-state>
-          <State>
-            <id>ProblematicWhitespace</id>
-          </State>
-        </selected-state>
       </profile-state>
     </entry>
   </component>
