@@ -11,6 +11,9 @@
       <option name="USE_RELATIVE_INDENTS" value="false" />
     </value>
   </option>
+  <CMakeCodeStyleSettings>
+    <option name="FORCE_COMMANDS_CASE" value="1" />
+  </CMakeCodeStyleSettings>
   <Objective-C>
     <option name="INDENT_NAMESPACE_MEMBERS" value="0" />
     <option name="INDENT_PREPROCESSOR_DIRECTIVE" value="4" />
