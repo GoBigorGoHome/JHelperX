@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="Project and Libraries" />
-    <option name="defaultScopeName" value="Project and Libraries" />
-    <option name="SEARCH_SCOPE" value="Project and Libraries" />
+    <option name="customScope" value="File '.../strategies/avg_strategy/krx_strategy.cpp - [twix]'" />
+    <option name="defaultScopeName" value="File '.../strategies/avg_strategy/krx_strategy.cpp - [twix]'" />
+    <option name="SEARCH_SCOPE" value="File '.../strategies/avg_strategy/krx_strategy.cpp - [twix]'" />
   </component>
 </application>
