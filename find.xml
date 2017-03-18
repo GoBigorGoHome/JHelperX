@@ -2,10 +2,8 @@
   <component name="FindSettings">
     <option name="customScope" value="File '.../strategies/avg_strategy/krx_strategy.cpp - [twix]'" />
     <option name="defaultScopeName" value="File '.../strategies/avg_strategy/krx_strategy.cpp - [twix]'" />
-    <option name="localRegularExpressions" value="true" />
     <option name="regularExpressions" value="true" />
     <option name="REGULAR_EXPRESSIONS" value="true" />
-    <option name="LOCAL_REGULAR_EXPRESSIONS" value="true" />
     <option name="SEARCH_SCOPE" value="File '.../strategies/avg_strategy/krx_strategy.cpp - [twix]'" />
   </component>
 </application>
