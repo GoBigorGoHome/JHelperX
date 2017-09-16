@@ -7,4 +7,24 @@
     <variable name="TARGET" expression="" defaultValue="&quot;TargetName&quot;" alwaysStopAt="true" />
     <context />
   </template>
+  <template name="macro" value="macro($NAME$)&#10;    $END$&#10;endmacro()" description="new macro definition" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="function" value="function($NAME$)&#10;    $END$&#10;endfunction()" description="new function definition" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="if" value="if($CONDITION$)&#10;    $END$&#10;endif()" description="if()-condition" toReformat="true" toShortenFQNames="true">
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="foreach" value="foreach($CONDITION$)&#10;    $END$&#10;endforeach()" description="foreach()-loop" toReformat="true" toShortenFQNames="true">
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="while" value="while($CONDITION$)&#10;    $END$&#10;endwhile()" description="while()-loop" toReformat="true" toShortenFQNames="true">
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
 </templateSet>
