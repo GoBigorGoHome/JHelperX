@@ -8,5 +8,6 @@
     <entry key="ide.firstStartup" value="false" />
     <entry key="debugger.watches.in.variables" value="false" />
     <entry key="cidr.max.intellisense.file.length" value="3000000" />
+    <entry key="cidr.debugger.gdb.workaround.macOS.startupWithShell" value="false" />
   </component>
 </application>
