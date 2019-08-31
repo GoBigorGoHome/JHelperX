@@ -2,13 +2,23 @@
   <component name="FileTypeManager" version="17">
     <extensionMap>
       <mapping ext="template" type="ObjectiveC" />
+      <mapping pattern="LICENSE" type="PLAIN_TEXT" />
       <mapping pattern="hah" type="PLAIN_TEXT" />
       <mapping pattern="fors" type="PLAIN_TEXT" />
-      <mapping pattern="LICENSE" type="PLAIN_TEXT" />
-      <mapping ext="frag" type="PLAIN_TEXT" />
       <mapping ext="bin" type="PLAIN_TEXT" />
-      <mapping ext="cfg" type="PLAIN_TEXT" />
       <mapping ext="vert" type="PLAIN_TEXT" />
+      <mapping ext="frag" type="PLAIN_TEXT" />
+      <removed_mapping ext="bat" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping ext="log" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping ext="cmd" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping ext="bat" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping ext="cfg" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping ext="log" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping ext="dockerfile" approved="true" type="textmate" />
+      <removed_mapping ext="makefile" approved="true" type="textmate" />
+      <removed_mapping ext="cmd" approved="true" type="PLAIN_TEXT" />
+      <removed_mapping ext="pl" approved="true" type="textmate" />
+      <removed_mapping ext="snakefile" approved="true" type="textmate" />
     </extensionMap>
   </component>
 </application>
