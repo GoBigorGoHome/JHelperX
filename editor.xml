@@ -1,8 +1,20 @@
 <application>
+  <component name="CodeFoldingSettings">
+    <option name="COLLAPSE_IMPORTS" value="false" />
+    <option name="COLLAPSE_FILE_HEADER" value="false" />
+  </component>
   <component name="EditorSettings">
     <option name="USE_SOFT_WRAPS" value="" />
     <option name="IS_ENSURE_NEWLINE_AT_EOF" value="true" />
-    <option name="ARE_LINE_NUMBERS_SHOWN" value="true" />
     <option name="IS_WHITESPACES_SHOWN" value="true" />
+  </component>
+  <component name="OCCodeFoldingSettings">
+    <option name="collapseConditionallyNotCompiled" value="false" />
+    <option name="collapseTemplateParamList" value="false" />
+    <option name="COLLAPSE_TEMPLATE_PARAM_LIST" value="false" />
+    <option name="COLLAPSE_CONDITIONALLY_NOT_COMPILED" value="false" />
+  </component>
+  <component name="XmlFoldingSettings">
+    <option name="COLLAPSE_HTML_STYLE_ATTRIBUTE" value="false" />
   </component>
 </application>
