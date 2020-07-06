@@ -99,7 +99,6 @@ public class ChromeParser implements ProjectComponent {
 							UIUtils.openMethodInEditor(project, (OCFile) generatedFile, "solve");
 						}
 
-						IDEUtils.reloadProject(project);
 					}
 			);
 

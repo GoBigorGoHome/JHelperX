@@ -24,6 +24,5 @@ public class ParseContestAction extends BaseAction {
 			UIUtils.openMethodInEditor(project, (OCFile) generatedFile, "solve");
 		}
 
-		IDEUtils.reloadProject(project);
 	}
 }
