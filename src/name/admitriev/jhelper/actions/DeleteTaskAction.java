@@ -1,5 +1,6 @@
 package name.admitriev.jhelper.actions;
 
+import com.google.common.collect.Lists;
 import com.intellij.execution.RunManagerEx;
 import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.RunConfiguration;
@@ -67,7 +68,7 @@ public class DeleteTaskAction extends BaseAction {
 	}
 
 	private static void selectSomeTaskConfiguration(RunManagerEx runManager) {
-		for (RunnerAndConfigurationSettings settings : runManager.getAllSettings()) {
+		for (RunnerAndConfigurationSettings settings : Lists.reverse(runManager.getAllSettings())) {
 			if (settings.getConfiguration() instanceof TaskConfiguration) {
 				runManager.setSelectedConfiguration(settings);
 				return;
