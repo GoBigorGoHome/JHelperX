@@ -13,6 +13,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.PsiManager;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.configuration.TaskConfiguration;
 import name.admitriev.jhelper.configuration.TaskConfigurationType;
 import name.admitriev.jhelper.exceptions.NotificationException;
@@ -39,7 +40,7 @@ public class TaskUtils {
 	}
 
 	private static PsiElement generateCPP(Project project, TaskData taskData) {
-		VirtualFile parent = FileUtils.findOrCreateByRelativePath(project.getBaseDir(), FileUtils.getDirectory(taskData.getCppPath()));
+		VirtualFile parent = FileUtils.findOrCreateByRelativePath(IDEUtils.getBaseDir(project), FileUtils.getDirectory(taskData.getCppPath()));
 		PsiDirectory psiParent = PsiManager.getInstance(project).findDirectory(parent);
 		if (psiParent == null) {
 			throw new NotificationException("Couldn't open parent directory as PSI");
@@ -78,7 +79,8 @@ public class TaskUtils {
 				taskConfiguration,
 				factory
 		);
-		manager.addConfiguration(configuration, true);
+		configuration.storeInDotIdeaFolder();
+		manager.addConfiguration(configuration);
 
 		manager.setSelectedConfiguration(configuration);
 	}

@@ -3,6 +3,7 @@ package name.admitriev.jhelper.ui;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.LabeledComponent;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.task.TaskData;
 import net.egork.chelper.task.StreamConfiguration;
 import net.egork.chelper.task.Test;
@@ -23,9 +24,9 @@ public final class TaskSettingsComponent extends JPanel {
 	private ComboBox<TestType> testType = null;
 	private final boolean canChangeName;
 
-	private Project project;
+	private final Project project;
 
-	private StreamConfigurationPanel.SizeChangedListener listener;
+	private final StreamConfigurationPanel.SizeChangedListener listener;
 
 	public TaskSettingsComponent(Project project, boolean canChangeName) {
 		this(project, canChangeName, null);
@@ -49,7 +50,7 @@ public final class TaskSettingsComponent extends JPanel {
 		cppPath = new FileSelector(
 				project,
 				taskData.getCppPath(),
-				RelativeFileChooserDescriptor.fileChooser(project.getBaseDir())
+				RelativeFileChooserDescriptor.fileChooser(IDEUtils.getBaseDir(project))
 		);
 		input = new StreamConfigurationPanel(
 				taskData.getInput(),

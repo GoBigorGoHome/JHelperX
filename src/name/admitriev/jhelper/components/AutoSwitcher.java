@@ -15,6 +15,7 @@ import com.intellij.openapi.project.DumbService;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.messages.MessageBus;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.configuration.TaskConfiguration;
 import org.jetbrains.annotations.NotNull;
 
@@ -60,7 +61,7 @@ public class AutoSwitcher implements ProjectComponent {
 						if (configuration instanceof TaskConfiguration) {
 							TaskConfiguration task = (TaskConfiguration) configuration;
 							String pathToClassFile = task.getCppPath();
-							VirtualFile expectedFie = project.getBaseDir().findFileByRelativePath(pathToClassFile);
+							VirtualFile expectedFie = IDEUtils.getBaseDir(project).findFileByRelativePath(pathToClassFile);
 							if (file.equals(expectedFie)) {
 								busy = true;
 								RunManager.getInstance(project).setSelectedConfiguration(
@@ -101,7 +102,7 @@ public class AutoSwitcher implements ProjectComponent {
 				}
 				busy = true;
 				String pathToClassFile = ((TaskConfiguration) configuration).getCppPath();
-				VirtualFile toOpen = project.getBaseDir().findFileByRelativePath(pathToClassFile);
+				VirtualFile toOpen = IDEUtils.getBaseDir(project).findFileByRelativePath(pathToClassFile);
 				if (toOpen != null) {
 					TransactionGuard.getInstance().submitTransactionAndWait(() -> FileEditorManager.getInstance(project).openFile(
 							toOpen,

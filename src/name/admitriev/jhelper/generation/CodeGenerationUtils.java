@@ -10,6 +10,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.SearchScope;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.components.Configurator;
 import name.admitriev.jhelper.configuration.TaskConfiguration;
 import name.admitriev.jhelper.exceptions.NotificationException;
@@ -102,20 +103,13 @@ public class CodeGenerationUtils {
 	private static @NotNull String generateTestDeclaration(Test[] tests) {
 		StringBuilder result = new StringBuilder();
 		for (Test test : tests) {
-			result.append(
-					"{" +
-					quote(test.input) + ", " +
-					quote(test.output != null ? test.output : "") + ", " +
-					Boolean.toString(test.active) + ", " +
-					Boolean.toString(test.output != null) +
-					"},"
-			);
+			result.append("{").append(quote(test.input)).append(", ").append(quote(test.output != null ? test.output : "")).append(", ").append(test.active).append(", ").append(test.output != null).append("},");
 		}
 		return result.toString();
 	}
 
 	private static CharSequence quote(String input) {
-		StringBuilder sb = new StringBuilder("");
+		StringBuilder sb = new StringBuilder();
 		sb.append('"');
 		for (char c : input.toCharArray()) {
 			if (c == '\n') {
@@ -235,7 +229,7 @@ public class CodeGenerationUtils {
 		Configurator configurator = project.getComponent(Configurator.class);
 		Configurator.State configuration = configurator.getState();
 
-		VirtualFile outputFile = project.getBaseDir().findFileByRelativePath(configuration.getOutputFile());
+		VirtualFile outputFile = IDEUtils.getBaseDir(project).findFileByRelativePath(configuration.getOutputFile());
 		if (outputFile == null) {
 			throw new NotificationException(
 					"No output file found.",
@@ -256,7 +250,7 @@ public class CodeGenerationUtils {
 		Configurator configurator = project.getComponent(Configurator.class);
 		Configurator.State configuration = configurator.getState();
 
-		VirtualFile outputFile = project.getBaseDir().findFileByRelativePath(configuration.getRunFile());
+		VirtualFile outputFile = IDEUtils.getBaseDir(project).findFileByRelativePath(configuration.getRunFile());
 		if (outputFile == null) {
 			throw new NotificationException(
 					"No run file found.",
@@ -312,8 +306,7 @@ public class CodeGenerationUtils {
 			@NotNull Project project,
 			@NotNull TaskConfiguration taskConfiguration
 	) {
-		String pathToClassFile = taskConfiguration.getCppPath();
-		VirtualFile virtualFile = project.getBaseDir().findFileByRelativePath(pathToClassFile);
+		VirtualFile virtualFile = IDEUtils.getBaseDir(project).findFileByRelativePath(taskConfiguration.getCppPath());
 		if (virtualFile == null) {
 			throw new NotificationException("Task file not found", "Seems your task is in inconsistent state");
 		}

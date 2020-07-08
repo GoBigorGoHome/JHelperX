@@ -9,6 +9,7 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.components.Configurator;
 import name.admitriev.jhelper.configuration.TaskConfiguration;
 import name.admitriev.jhelper.exceptions.NotificationException;
@@ -46,7 +47,7 @@ public class CopySourceAction extends BaseAction {
 
 		CodeGenerationUtils.generateSubmissionFileForTask(project, (TaskConfiguration)runConfiguration);
 
-		VirtualFile file = project.getBaseDir().findFileByRelativePath(configuration.getOutputFile());
+		VirtualFile file = IDEUtils.getBaseDir(project).findFileByRelativePath(configuration.getOutputFile());
 		if (file == null)
 			throw new NotificationException("Couldn't find output file");
 		Document document = FileDocumentManager.getInstance().getDocument(file);

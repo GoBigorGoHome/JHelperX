@@ -6,6 +6,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.exceptions.JHelperException;
 import name.admitriev.jhelper.exceptions.NotificationException;
 
@@ -13,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,10 +40,11 @@ public class TemplatesUtils {
 
 	public static String getTemplate(Project project, String name) {
 		String filename = name + ".template";
-		VirtualFile file = project.getBaseDir().findFileByRelativePath(filename);
+		VirtualFile baseDir = IDEUtils.getBaseDir(project);
+		VirtualFile file = baseDir.findFileByRelativePath(filename);
 		if (file == null) {
 			createTemplateFromDefault(project, name);
-			file = project.getBaseDir().findFileByRelativePath(filename);
+			file = baseDir.findFileByRelativePath(filename);
 			if (file == null) {
 				throw new JHelperException("Can't open template file(" + filename + ") after its creation");
 			}
@@ -57,7 +60,7 @@ public class TemplatesUtils {
 
 	private static void createTemplateFromDefault(Project project, String name) {
 		String filename = name + ".template";
-		VirtualFile file = FileUtils.findOrCreateByRelativePath(project.getBaseDir(), filename);
+		VirtualFile file = FileUtils.findOrCreateByRelativePath(IDEUtils.getBaseDir(project), filename);
 		PsiFile psiFile = PsiManager.getInstance(project).findFile(file);
 		String defaultTemplate;
 		try {
@@ -78,7 +81,7 @@ public class TemplatesUtils {
 			if (stream == null) {
 				throw new IOException("Couldn't open a stream to resource " + name);
 			}
-			try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"))) {
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {
 				StringBuilder sb = new StringBuilder();
 				String line;
 				//noinspection NestedAssignment

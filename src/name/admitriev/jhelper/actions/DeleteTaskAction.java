@@ -9,6 +9,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.configuration.TaskConfiguration;
 import name.admitriev.jhelper.exceptions.NotificationException;
 import name.admitriev.jhelper.ui.Notificator;
@@ -50,7 +51,7 @@ public class DeleteTaskAction extends BaseAction {
 				new Runnable() {
 					@Override
 					public void run() {
-						VirtualFile classFile = project.getBaseDir().findFileByRelativePath(cppPath);
+						VirtualFile classFile = IDEUtils.getBaseDir(project).findFileByRelativePath(cppPath);
 						if (classFile != null) {
 							try {
 								classFile.delete(this);

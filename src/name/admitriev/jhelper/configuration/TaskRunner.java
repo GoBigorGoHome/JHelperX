@@ -85,7 +85,7 @@ public class TaskRunner implements ProgramRunner<RunnerSettings> {
 
 	private static void generateRunFileForTask(Project project, TaskConfiguration taskConfiguration) {
 		String pathToClassFile = taskConfiguration.getCppPath();
-		VirtualFile virtualFile = project.getBaseDir().findFileByRelativePath(pathToClassFile);
+		VirtualFile virtualFile = IDEUtils.getBaseDir(project).findFileByRelativePath(pathToClassFile);
 		if (virtualFile == null) {
 			throw new NotificationException("Task file not found", "Seems your task is in inconsistent state");
 		}

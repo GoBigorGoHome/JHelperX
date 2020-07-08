@@ -3,6 +3,8 @@ package name.admitriev.jhelper.ui;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.LabeledComponent;
+import com.intellij.openapi.vfs.VirtualFile;
+import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.components.Configurator;
 import org.jdesktop.swingx.VerticalLayout;
 import org.jetbrains.annotations.NotNull;
@@ -12,33 +14,33 @@ import javax.swing.*;
 
 public class ConfigurationDialog extends DialogWrapper {
 	private final JComponent component;
-	private JTextField author;
-	private FileSelector tasksDirectory;
-	private FileSelector outputFile;
-	private FileSelector runFile;
-	private JCheckBox codeEliminationOn;
-	private JCheckBox codeReformattingOn;
+	private final JTextField author;
+	private final FileSelector tasksDirectory;
+	private final FileSelector outputFile;
+	private final FileSelector runFile;
+	private final JCheckBox codeEliminationOn;
+	private final JCheckBox codeReformattingOn;
 
 	public ConfigurationDialog(@NotNull Project project, Configurator.State configuration) {
 		super(project);
 		setTitle("JHelper configuration for " + project.getName());
 
 		author = new JTextField(configuration.getAuthor());
-
+		VirtualFile baseDir = IDEUtils.getBaseDir(project);
 		tasksDirectory = new FileSelector(
 				project,
 				configuration.getTasksDirectory(),
-				RelativeFileChooserDescriptor.directoryChooser(project.getBaseDir())
+				RelativeFileChooserDescriptor.directoryChooser(baseDir)
 		);
 		outputFile = new FileSelector(
 				project,
 				configuration.getOutputFile(),
-				RelativeFileChooserDescriptor.fileChooser(project.getBaseDir())
+				RelativeFileChooserDescriptor.fileChooser(baseDir)
 		);
 		runFile = new FileSelector(
 				project,
 				configuration.getRunFile(),
-				RelativeFileChooserDescriptor.fileChooser(project.getBaseDir())
+				RelativeFileChooserDescriptor.fileChooser(baseDir)
 		);
 
 		codeEliminationOn = new JCheckBox("Eliminate code?", configuration.isCodeEliminationOn());
