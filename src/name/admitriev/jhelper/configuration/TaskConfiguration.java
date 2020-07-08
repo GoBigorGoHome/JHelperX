@@ -5,7 +5,6 @@ import com.intellij.execution.Executor;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.execution.configurations.RunConfigurationBase;
-import com.intellij.execution.configurations.RuntimeConfigurationException;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.project.Project;
@@ -55,7 +54,7 @@ public class TaskConfiguration extends RunConfigurationBase {
 	@Override
 	public SettingsEditor<? extends RunConfiguration> getConfigurationEditor() {
 		return new SettingsEditor<TaskConfiguration>() {
-			private TaskSettingsComponent component = new TaskSettingsComponent(getProject(), false);
+			private final TaskSettingsComponent component = new TaskSettingsComponent(getProject(), false);
 
 			@Override
 			protected void resetEditorFrom(@NotNull TaskConfiguration settings) {
@@ -88,7 +87,7 @@ public class TaskConfiguration extends RunConfigurationBase {
 	}
 
 	@Override
-	public void checkConfiguration() throws RuntimeConfigurationException {
+	public void checkConfiguration() {
 	}
 
 	@Override
@@ -132,7 +131,7 @@ public class TaskConfiguration extends RunConfigurationBase {
 	}
 
 	@Override
-	public void readExternal(Element element) {
+	public void readExternal(@NotNull Element element) {
 		super.readExternal(element);
 		className = element.getAttributeValue("className", "");
 		cppPath = element.getAttributeValue("cppPath", "");
@@ -168,11 +167,11 @@ public class TaskConfiguration extends RunConfigurationBase {
 	public void writeExternal(Element element) {
 		element.setAttribute("className", className);
 		element.setAttribute("cppPath", cppPath);
-		element.setAttribute("inputType", String.valueOf(input.type.name()));
+		element.setAttribute("inputType", input.type.name());
 		if (input.fileName != null) {
 			element.setAttribute("inputFile", input.fileName);
 		}
-		element.setAttribute("outputType", String.valueOf(output.type.name()));
+		element.setAttribute("outputType", output.type.name());
 		if (output.fileName != null) {
 			element.setAttribute("outputFile", output.fileName);
 		}

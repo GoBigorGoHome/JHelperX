@@ -6,7 +6,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.text.StringTokenizer;
 import com.jetbrains.cidr.lang.psi.OCFile;
-import name.admitriev.jhelper.IDEUtils;
 import name.admitriev.jhelper.network.SimpleHttpServer;
 import name.admitriev.jhelper.task.TaskData;
 import name.admitriev.jhelper.task.TaskUtils;
@@ -18,8 +17,6 @@ import net.egork.chelper.task.Task;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,26 +27,11 @@ public class ChromeParser implements ProjectComponent {
 	private static final Map<String, Parser> PARSERS;
 
 	static {
-		Map<String, Parser> taskParsers = new HashMap<>();
-		taskParsers.put("yandex", new YandexParser());
-		taskParsers.put("codeforces", new CodeforcesParser());
-		taskParsers.put("hackerrank", new HackerRankParser());
-		taskParsers.put("facebook", new FacebookParser());
-		taskParsers.put("usaco", new UsacoParser());
-		taskParsers.put("gcj", new GCJParser());
-		taskParsers.put("bayan", new BayanParser());
-		taskParsers.put("kattis", new KattisParser());
-		taskParsers.put("codechef", new CodeChefParser());
-		taskParsers.put("hackerearth", new HackerEarthParser());
-		taskParsers.put("atcoder", new AtCoderParser());
-		taskParsers.put("csacademy", new CSAcademyParser());
-		taskParsers.put("new-gcj", new NewGCJParser());
-		taskParsers.put("json", new JSONParser());
-		PARSERS = Collections.unmodifiableMap(taskParsers);
+		PARSERS = Map.ofEntries(Map.entry("yandex", new YandexParser()), Map.entry("codeforces", new CodeforcesParser()), Map.entry("hackerrank", new HackerRankParser()), Map.entry("facebook", new FacebookParser()), Map.entry("usaco", new UsacoParser()), Map.entry("gcj", new GCJParser()), Map.entry("bayan", new BayanParser()), Map.entry("kattis", new KattisParser()), Map.entry("codechef", new CodeChefParser()), Map.entry("hackerearth", new HackerEarthParser()), Map.entry("atcoder", new AtCoderParser()), Map.entry("csacademy", new CSAcademyParser()), Map.entry("new-gcj", new NewGCJParser()), Map.entry("json", new JSONParser()));
 	}
 
 	private SimpleHttpServer server = null;
-	private Project project;
+	private final Project project;
 
 	public ChromeParser(Project project) {
 		this.project = project;
