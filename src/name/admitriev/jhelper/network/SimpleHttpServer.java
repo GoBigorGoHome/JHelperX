@@ -1,10 +1,8 @@
 package name.admitriev.jhelper.network;
 
-import com.intellij.notification.NotificationType;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.application.ModalityState;
 import com.intellij.util.Consumer;
-import name.admitriev.jhelper.ui.Notificator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,14 +11,15 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Simple HTTP Server.
  * Passes every request without headers to given Consumer
  */
 public class SimpleHttpServer implements Runnable {
-	private Consumer<String> consumer;
-	private ServerSocket serverSocket = null;
+	private final Consumer<String> consumer;
+	private final ServerSocket serverSocket;
 
 	public SimpleHttpServer(SocketAddress endpoint, Consumer<String> consumer) throws IOException {
 		serverSocket = new ServerSocket();
@@ -42,11 +41,6 @@ public class SimpleHttpServer implements Runnable {
 
 					//ignore headers
 					if (strings.length < 2) {
-						Notificator.showNotification(
-								"ChromeParser",
-								"Got response without body. Ignore.",
-								NotificationType.INFORMATION
-						);
 						continue;
 					}
 					String text = strings[1];
@@ -64,7 +58,7 @@ public class SimpleHttpServer implements Runnable {
 
 	private static String readFromStream(InputStream inputStream) throws IOException {
 		try (BufferedReader reader = new BufferedReader(
-				new InputStreamReader(inputStream, "UTF-8")
+				new InputStreamReader(inputStream, StandardCharsets.UTF_8)
 		)) {
 			StringBuilder builder = new StringBuilder();
 			String line;
