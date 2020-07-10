@@ -183,16 +183,16 @@ public class CodeGenerationUtils {
 	private static String generateSolverCall(TestType testType) {
 		switch (testType) {
 			case SINGLE:
-				return "solver.solve(in, out);";
+				return "solve();";
 			case MULTI_NUMBER:
 				return "int n;\n" +
-				       "in >> n;\n" +
+				       "cin >> n;\n" +
 				       "for(int i = 0; i < n; ++i) {\n" +
-				       "\tsolver.solve(in, out);\n" +
+				       "\tsolve();\n" +
 				       "}\n";
 			case MULTI_EOF:
-				return "while(in.good()) {\n" +
-				       "\tsolver.solve(in, out);\n" +
+				return "while(cin.good()) {\n" +
+				       "\tsolve();\n" +
 				       "}\n";
 			default:
 				throw new IllegalArgumentException("Unknown testType:" + testType);
