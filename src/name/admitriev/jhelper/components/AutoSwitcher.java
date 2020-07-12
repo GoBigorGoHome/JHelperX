@@ -6,7 +6,7 @@ import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.execution.impl.RunManagerImpl;
 import com.intellij.execution.impl.RunnerAndConfigurationSettingsImpl;
-import com.intellij.openapi.application.TransactionGuard;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
@@ -104,7 +104,7 @@ public class AutoSwitcher implements ProjectComponent {
 				String pathToClassFile = ((TaskConfiguration) configuration).getCppPath();
 				VirtualFile toOpen = IDEUtils.getBaseDir(project).findFileByRelativePath(pathToClassFile);
 				if (toOpen != null) {
-					TransactionGuard.getInstance().submitTransactionAndWait(() -> FileEditorManager.getInstance(project).openFile(
+					ApplicationManager.getApplication().invokeAndWait(() -> FileEditorManager.getInstance(project).openFile(
 							toOpen,
 							true
 					));
