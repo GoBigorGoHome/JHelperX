@@ -8,7 +8,11 @@ import com.intellij.execution.configurations.RunConfigurationBase;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.project.Project;
+import com.jetbrains.cidr.cpp.execution.CMakeAppRunConfiguration;
+import com.jetbrains.cidr.cpp.execution.CMakeRunConfigurationUtil;
 import com.jetbrains.cidr.execution.CidrCommandLineState;
+import com.jetbrains.cidr.lang.workspace.OCResolveConfiguration;
+import com.jetbrains.cidr.lang.workspace.OCRunConfigurationWithResolveConfiguration;
 import name.admitriev.jhelper.exceptions.JHelperException;
 import name.admitriev.jhelper.task.TaskData;
 import name.admitriev.jhelper.ui.TaskSettingsComponent;
@@ -27,7 +31,7 @@ import java.util.Objects;
 /**
  * Run Configuration for running JHelper tasks
  */
-public class TaskConfiguration extends RunConfigurationBase {
+public class TaskConfiguration extends RunConfigurationBase implements OCRunConfigurationWithResolveConfiguration {
 	private String className;
 	private String cppPath;
 	private StreamConfiguration input;
@@ -228,5 +232,14 @@ public class TaskConfiguration extends RunConfigurationBase {
 
 	public StreamConfiguration getOutput() {
 		return output;
+	}
+
+	@Override
+	public @Nullable OCResolveConfiguration getResolveConfiguration(@NotNull ExecutionTarget executionTarget) {
+		if (executionTarget instanceof TaskConfigurationExecutionTarget) {
+			CMakeAppRunConfiguration cmakeAppRunConfiguration = (CMakeAppRunConfiguration) Objects.requireNonNull(TaskRunner.getRunnerSettings(getProject())).getConfiguration();
+			return CMakeRunConfigurationUtil.getResolveConfiguration(cmakeAppRunConfiguration, ((TaskConfigurationExecutionTarget) executionTarget).getOriginalTarget());
+		}
+		return null;
 	}
 }
