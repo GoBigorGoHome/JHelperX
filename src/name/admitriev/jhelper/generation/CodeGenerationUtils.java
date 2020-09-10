@@ -187,12 +187,14 @@ public class CodeGenerationUtils {
 			case MULTI_NUMBER:
 				return "int n;\n" +
 				       "cin >> n;\n" +
-				       "for(int i = 0; i < n; ++i) {\n" +
+				       "for (int i = 0; i < n; ++i) {\n" +
 				       "\tsolve();\n" +
 				       "}\n";
 			case MULTI_EOF:
-				return "while(cin.good()) {\n" +
+				return "while (cin.good()) {\n" +
 				       "\tsolve();\n" +
+                       "\twhile (cin.good() && std::isspace(cin.peek()))\n" +
+					   "\t\tcin.get();\n" +
 				       "}\n";
 			default:
 				throw new IllegalArgumentException("Unknown testType:" + testType);
