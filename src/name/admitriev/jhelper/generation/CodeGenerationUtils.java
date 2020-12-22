@@ -92,6 +92,7 @@ public class CodeGenerationUtils {
 		template = TemplatesUtils.replaceAll(template, TemplatesUtils.TASK_FILE, path);
 		template = TemplatesUtils.replaceAll(template, TemplatesUtils.TESTS, generateTestDeclaration(task.getTests()));
 		template = TemplatesUtils.replaceAll(template, TemplatesUtils.CLASS_NAME, task.getClassName());
+		template = TemplatesUtils.replaceAll(template, TemplatesUtils.TEST_TYPE, task.getTestType().name());
 		template = TemplatesUtils.replaceAll(
 				template,
 				TemplatesUtils.SOLVER_CALL,

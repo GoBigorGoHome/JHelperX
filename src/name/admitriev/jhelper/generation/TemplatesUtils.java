@@ -30,6 +30,7 @@ public class TemplatesUtils {
 	public static final Pattern INPUT = Pattern.compile("%Input%", Pattern.LITERAL);
 	public static final Pattern OUTPUT = Pattern.compile("%Output%", Pattern.LITERAL);
 	public static final Pattern CODE = Pattern.compile("%Code%", Pattern.LITERAL);
+	public static final Pattern TEST_TYPE = Pattern.compile("%TestType%", Pattern.LITERAL);
 
 	private TemplatesUtils() {
 	}
