@@ -10,7 +10,7 @@
         In 0.18 Copy Output Action now (re)generates the output files.
     </change-notes>
 
-    <idea-version since-build="201.6487.17"/>
+    <idea-version since-build="203.3645.34"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.cidr.lang</depends>
@@ -20,6 +20,7 @@
         <configurationType implementation="name.admitriev.jhelper.configuration.TaskConfigurationType"/>
         <programRunner implementation="name.admitriev.jhelper.configuration.TaskRunner"/>
         <executionTargetProvider implementation="name.admitriev.jhelper.configuration.TaskConfigurationTargetProvider"/>
+        <notificationGroup id="JHelper" displayType="BALLOON"/>
     </extensions>
 
     <application-components>
