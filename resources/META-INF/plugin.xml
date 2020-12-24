@@ -26,17 +26,15 @@
     <projectListeners>
         <listener class="name.admitriev.jhelper.components.ChromeParser"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="name.admitriev.jhelper.components.AutoSwitcher"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+        <listener class="name.admitriev.jhelper.components.AutoSwitcher"
+                  topic="com.intellij.execution.RunManagerListener"/>
     </projectListeners>
 
     <application-components>
         <!-- Add your application components here -->
     </application-components>
-
-    <project-components>
-        <component>
-            <implementation-class>name.admitriev.jhelper.components.AutoSwitcher</implementation-class>
-        </component>
-    </project-components>
 
     <actions>
         <action
