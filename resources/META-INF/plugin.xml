@@ -21,6 +21,7 @@
         <programRunner implementation="name.admitriev.jhelper.configuration.TaskRunner"/>
         <executionTargetProvider implementation="name.admitriev.jhelper.configuration.TaskConfigurationTargetProvider"/>
         <notificationGroup id="JHelper" displayType="BALLOON"/>
+        <projectService serviceImplementation="name.admitriev.jhelper.components.Configurator"/>
     </extensions>
 
     <application-components>
@@ -28,9 +29,6 @@
     </application-components>
 
     <project-components>
-        <component>
-            <implementation-class>name.admitriev.jhelper.components.Configurator</implementation-class>
-        </component>
         <component>
             <implementation-class>name.admitriev.jhelper.components.ChromeParser</implementation-class>
         </component>

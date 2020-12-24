@@ -14,7 +14,7 @@ public class ConfigureAction extends BaseAction {
 			throw new NotificationException("No project found", "Are you in any project?");
 		}
 
-		Configurator configurator = project.getComponent(Configurator.class);
+		Configurator configurator = project.getService(Configurator.class);
 		Configurator.State configuration = configurator.getState();
 
 		ConfigurationDialog x = new ConfigurationDialog(project, configuration);
