@@ -1,8 +1,8 @@
 package name.admitriev.jhelper.components;
 
 import com.intellij.notification.NotificationType;
-import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManagerListener;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.text.StringTokenizer;
 import com.jetbrains.cidr.lang.psi.OCFile;
@@ -13,6 +13,7 @@ import name.admitriev.jhelper.ui.Notificator;
 import name.admitriev.jhelper.ui.UIUtils;
 import net.egork.chelper.parser.*;
 import net.egork.chelper.task.Task;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -22,7 +23,7 @@ import java.util.Map;
 /**
  * A Component to monitor request from CHelper Chrome Extension and parse them to Tasks
  */
-public class ChromeParser implements ProjectComponent {
+public class ChromeParser implements ProjectManagerListener {
 	private static final int PORT = 4243;
 	private static final Map<String, Parser> PARSERS;
 
@@ -38,7 +39,7 @@ public class ChromeParser implements ProjectComponent {
 	}
 
 	@Override
-	public void projectOpened() {
+	public void projectOpened(@NotNull Project project) {
 		try {
 			server = new SimpleHttpServer(
 					new InetSocketAddress("localhost", PORT),
@@ -96,7 +97,7 @@ public class ChromeParser implements ProjectComponent {
 	}
 
 	@Override
-	public void projectClosed() {
+	public void projectClosed(@NotNull Project project) {
 		if (server != null) {
 			server.stop();
 		}

@@ -23,15 +23,16 @@
         <notificationGroup id="JHelper" displayType="BALLOON"/>
         <projectService serviceImplementation="name.admitriev.jhelper.components.Configurator"/>
     </extensions>
+    <projectListeners>
+        <listener class="name.admitriev.jhelper.components.ChromeParser"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </projectListeners>
 
     <application-components>
         <!-- Add your application components here -->
     </application-components>
 
     <project-components>
-        <component>
-            <implementation-class>name.admitriev.jhelper.components.ChromeParser</implementation-class>
-        </component>
         <component>
             <implementation-class>name.admitriev.jhelper.components.AutoSwitcher</implementation-class>
         </component>
