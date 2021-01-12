@@ -79,7 +79,7 @@ public class TaskUtils {
 				taskConfiguration,
 				factory
 		);
-		configuration.storeInDotIdeaFolder();
+		configuration.storeInLocalWorkspace();
 		manager.addConfiguration(configuration);
 
 		manager.setSelectedConfiguration(configuration);
