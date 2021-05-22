@@ -1,16 +1,11 @@
 package name.admitriev.jhelper.components;
 
-import com.intellij.execution.RunManager;
 import com.intellij.execution.RunManagerListener;
 import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.RunConfiguration;
-import com.intellij.execution.impl.RunManagerImpl;
-import com.intellij.execution.impl.RunnerAndConfigurationSettingsImpl;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
-import com.intellij.openapi.project.DumbService;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import name.admitriev.jhelper.IDEUtils;
@@ -19,21 +14,15 @@ import org.jetbrains.annotations.NotNull;
 
 public class AutoSwitcher implements FileEditorManagerListener, RunManagerListener {
     private final Project project;
-    private boolean busy = false;
 
     public AutoSwitcher(Project project) {
         this.project = project;
     }
 
-
-    @Override
-    public void fileOpened(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
-        selectTask(file);
-    }
-
     @Override
     public void selectionChanged(@NotNull FileEditorManagerEvent event) {
-        selectTask(event.getNewFile());
+        AutoSwitcherService autoSwitcherService = ServiceManager.getService(project, AutoSwitcherService.class);
+        autoSwitcherService.selectTask(event.getNewFile());
     }
 
     @Override
@@ -42,53 +31,17 @@ public class AutoSwitcher implements FileEditorManagerListener, RunManagerListen
             return;
         }
         RunConfiguration configuration = selectedConfiguration.getConfiguration();
-        if (busy || !(configuration instanceof TaskConfiguration)) {
+        if (!(configuration instanceof TaskConfiguration)) {
             return;
         }
-        busy = true;
+        AutoSwitcherService autoSwitcherService = ServiceManager.getService(project, AutoSwitcherService.class);
+        if (autoSwitcherService.isBusy()) {
+            return;
+        }
         String pathToClassFile = ((TaskConfiguration) configuration).getCppPath();
         VirtualFile toOpen = IDEUtils.getBaseDir(project).findFileByRelativePath(pathToClassFile);
         if (toOpen != null) {
-            ApplicationManager.getApplication().invokeAndWait(() -> FileEditorManager.getInstance(project).openFile(
-                    toOpen,
-                    true
-            ));
+            autoSwitcherService.openTaskFile(toOpen);
         }
-        busy = false;
-    }
-
-    private void selectTask(VirtualFile file) {
-        Runnable selectTaskRunnable = () -> {
-            if (busy || file == null) {
-                return;
-            }
-            RunManagerImpl runManager = RunManagerImpl.getInstanceImpl(project);
-            RunnerAndConfigurationSettings oldConfiguration = runManager.getSelectedConfiguration();
-            if (oldConfiguration != null && !(oldConfiguration.getConfiguration() instanceof TaskConfiguration)) {
-                return;
-            }
-            for (RunConfiguration configuration : runManager.getAllConfigurationsList()) {
-                if (configuration instanceof TaskConfiguration) {
-                    TaskConfiguration task = (TaskConfiguration) configuration;
-                    String pathToClassFile = task.getCppPath();
-                    VirtualFile expectedFie = IDEUtils.getBaseDir(project).findFileByRelativePath(pathToClassFile);
-                    if (file.equals(expectedFie)) {
-                        busy = true;
-                        RunManager.getInstance(project).setSelectedConfiguration(
-                                new RunnerAndConfigurationSettingsImpl(
-                                        runManager,
-                                        configuration,
-                                        false
-                                )
-                        );
-                        busy = false;
-                        return;
-                    }
-                }
-            }
-
-        };
-
-        DumbService.getInstance(project).smartInvokeLater(selectTaskRunnable);
     }
 }
