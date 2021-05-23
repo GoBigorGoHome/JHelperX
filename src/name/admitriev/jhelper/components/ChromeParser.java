@@ -97,7 +97,7 @@ public class ChromeParser implements ProjectManagerListener {
 	}
 
 	@Override
-	public void projectClosed(@NotNull Project project) {
+	public void projectClosing(@NotNull Project project) {
 		if (server != null) {
 			server.stop();
 		}
