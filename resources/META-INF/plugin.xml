@@ -7,7 +7,7 @@
     <description>Sport programming tool to inline library code and provide testing framework.</description>
 
     <change-notes>
-        In 0.18 Copy Output Action now (re)generates the output files.
+        Migrate components to services and listeners.
     </change-notes>
 
     <idea-version since-build="203.3645.34"/>

@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'name.admitriev.jhelper'
-version '0.18.1'
+version '0.19'
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public/' }
@@ -30,7 +30,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.3'
+    version '2021.1'
     plugins = ['com.intellij.clion', 'com.intellij.cidr.base', 'com.intellij.cidr.lang']
     updateSinceUntilBuild false
     type 'CL'
