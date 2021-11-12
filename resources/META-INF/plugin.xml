@@ -7,7 +7,7 @@
     <description>Sport programming tool to inline library code and provide testing framework.</description>
 
     <change-notes>
-        Migrate components to services and listeners.
+        Integrate online-judge-tools.
     </change-notes>
 
     <idea-version since-build="203.3645.34"/>
@@ -15,6 +15,7 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.cidr.lang</depends>
     <depends>com.intellij.modules.clion</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <configurationType implementation="name.admitriev.jhelper.configuration.TaskConfigurationType"/>
@@ -64,6 +65,13 @@
                 text="Copy Source"
                 description="Copies source of output file"
                 icon="/name/admitriev/jhelper/icons/copy.png"
+        />
+        <action
+                id="name.admitriev.jhelper.actions.SubmitCodeAction"
+                class="name.admitriev.jhelper.actions.SubmitCodeAction"
+                text="Submit Code"
+                description="Submit code to OJ"
+                icon="/name/admitriev/jhelper/icons/submit.png"
         />
         <action
                 id="name.admitriev.jhelper.actions.ParseContestAction"

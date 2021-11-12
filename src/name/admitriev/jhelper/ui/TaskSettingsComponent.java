@@ -17,6 +17,7 @@ import javax.swing.*;
  */
 public final class TaskSettingsComponent extends JPanel {
 	private JTextField name = null;
+	private JTextField url = null;
 	private JTextField className = null;
 	private FileSelector cppPath = null;
 	private StreamConfigurationPanel input = null;
@@ -45,7 +46,8 @@ public final class TaskSettingsComponent extends JPanel {
 		removeAll();
 		name = new JTextField(taskData.getName());
 		name.setEnabled(canChangeName);
-
+		url = new JTextField(taskData.getUrl());
+		url.setEnabled(false);
 		className = new JTextField(taskData.getClassName());
 		cppPath = new FileSelector(
 				project,
@@ -69,6 +71,7 @@ public final class TaskSettingsComponent extends JPanel {
 		testType.setSelectedItem(taskData.getTestType());
 
 		add(LabeledComponent.create(name, "Task name"));
+		add(LabeledComponent.create(url, "Task URL"));
 		add(LabeledComponent.create(className, "Class name"));
 		add(LabeledComponent.create(cppPath, "Path"));
 		add(LabeledComponent.create(input, "Input"));
@@ -82,6 +85,7 @@ public final class TaskSettingsComponent extends JPanel {
 	public TaskData getTask() {
 		return new TaskData(
 				name.getText(),
+				url.getText(),
 				className.getText(),
 				cppPath.getText(),
 				input.getStreamConfiguration(),

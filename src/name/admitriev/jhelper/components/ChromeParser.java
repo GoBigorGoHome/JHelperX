@@ -11,25 +11,22 @@ import name.admitriev.jhelper.task.TaskData;
 import name.admitriev.jhelper.task.TaskUtils;
 import name.admitriev.jhelper.ui.Notificator;
 import name.admitriev.jhelper.ui.UIUtils;
-import net.egork.chelper.parser.*;
-import net.egork.chelper.task.Task;
+import net.egork.chelper.task.StreamConfiguration;
+import net.egork.chelper.task.Test;
+import net.egork.chelper.task.TestType;
 import org.jetbrains.annotations.NotNull;
 
+//import java.io.FileNotFoundException;
 import java.io.IOException;
+//import java.io.PrintStream;
 import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.Map;
+import com.google.gson.Gson;
 
 /**
  * A Component to monitor request from CHelper Chrome Extension and parse them to Tasks
  */
 public class ChromeParser implements ProjectManagerListener {
 	private static final int PORT = 4243;
-	private static final Map<String, Parser> PARSERS;
-
-	static {
-		PARSERS = Map.ofEntries(Map.entry("yandex", new YandexParser()), Map.entry("codeforces", new CodeforcesParser()), Map.entry("hackerrank", new HackerRankParser()), Map.entry("facebook", new FacebookParser()), Map.entry("usaco", new UsacoParser()), Map.entry("gcj", new GCJParser()), Map.entry("bayan", new BayanParser()), Map.entry("kattis", new KattisParser()), Map.entry("codechef", new CodeChefParser()), Map.entry("hackerearth", new HackerEarthParser()), Map.entry("atcoder", new AtCoderParser()), Map.entry("csacademy", new CSAcademyParser()), Map.entry("new-gcj", new NewGCJParser()), Map.entry("json", new JSONParser()));
-	}
 
 	private SimpleHttpServer server = null;
 	private final Project project;
@@ -41,23 +38,31 @@ public class ChromeParser implements ProjectManagerListener {
 	@Override
 	public void projectOpened(@NotNull Project project) {
 		try {
+//			try {
+//				PrintStream fileOut = new PrintStream("C:/Users/zjsdu/Desktop/out.txt");
+//				System.setOut(fileOut);
+//
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//			}
 			server = new SimpleHttpServer(
 					new InetSocketAddress("localhost", PORT),
 					request -> {
 						StringTokenizer st = new StringTokenizer(request);
 						String type = st.nextToken();
-						Parser parser = PARSERS.get(type);
-						if (parser == null) {
+//						System.out.println(request);
+						if (!type.equals("json")) {
 							Notificator.showNotification(
-									"Unknown parser",
-									"Parser " + type + " unknown, request ignored",
+									"Response type is not json",
+									type + ": unknown type, ignored",
 									NotificationType.INFORMATION
 							);
 							return;
 						}
-						String page = request.substring(st.getCurrentPosition());
-						Collection<Task> tasks = parser.parseTaskFromHTML(page);
-						if (tasks.isEmpty()) {
+						String json = request.substring(st.getCurrentPosition());
+						Gson gson = new Gson();
+						CcTaskData rawTask = gson.fromJson(json, CcTaskData.class);
+						if (rawTask == null) {
 							Notificator.showNotification(
 									"Couldn't parse any task",
 									"Maybe format changed?",
@@ -68,20 +73,25 @@ public class ChromeParser implements ProjectManagerListener {
 						Configurator configurator = project.getService(Configurator.class);
 						Configurator.State configuration = configurator.getState();
 						String path = configuration.getTasksDirectory();
-						for (Task rawTask : tasks) {
-							TaskData task = new TaskData(
-									rawTask.name,
-									rawTask.taskClass,
-									String.format("%s/%s.cpp", path, rawTask.taskClass),
-									rawTask.input,
-									rawTask.output,
-									rawTask.testType,
-									rawTask.tests
-							);
-							PsiElement generatedFile = TaskUtils.saveNewTask(task, project);
-							UIUtils.openMethodInEditor(project, (OCFile) generatedFile, "solve");
-						}
-
+                        assert rawTask != null;
+                        RawTest[] rawTests = rawTask.tests;
+                        final int test_num = rawTests.length;
+                        Test[] tests = new Test[test_num];
+                        for (int i = 0; i < test_num; i++) {
+                            tests[i] = new Test(rawTests[i].input, rawTests[i].output, i);
+                        }
+                        TaskData task = new TaskData(
+                                rawTask.name,
+                                rawTask.url,
+                                rawTask.taskClass(),
+                                String.format("%s/%s.cpp", path, rawTask.taskClass()),
+                                StreamConfiguration.STANDARD,
+                                StreamConfiguration.STANDARD,
+                                TestType.SINGLE,
+                                tests
+                        );
+                        PsiElement generatedFile = TaskUtils.saveNewTask(task, project);
+                        UIUtils.openMethodInEditor(project, (OCFile) generatedFile, "solve");
 					}
 			);
 

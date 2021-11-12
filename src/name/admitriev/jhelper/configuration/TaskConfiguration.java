@@ -33,6 +33,7 @@ import java.util.Objects;
  */
 public class TaskConfiguration extends RunConfigurationBase implements OCRunConfigurationWithResolveConfiguration {
 	private String className;
+	private String url;
 	private String cppPath;
 	private StreamConfiguration input;
 	private StreamConfiguration output;
@@ -47,6 +48,7 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 	public TaskConfiguration(Project project, ConfigurationFactory factory) {
 		super(project, factory, "");
 		className = "";
+		url = "";
 		cppPath = "";
 		input = new StreamConfiguration(StreamConfiguration.StreamType.STANDARD);
 		output = new StreamConfiguration(StreamConfiguration.StreamType.STANDARD);
@@ -64,6 +66,7 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 			protected void resetEditorFrom(@NotNull TaskConfiguration settings) {
 				component.setTaskData(new TaskData(
 						getName(),
+						url,
 						className,
 						cppPath,
 						input,
@@ -77,6 +80,7 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 			protected void applyEditorTo(@NotNull TaskConfiguration settings) {
 				TaskData data = component.getTask();
 				settings.className = data.getClassName();
+				settings.url = data.getUrl();
 				settings.cppPath = data.getCppPath();
 				settings.input = data.getInput();
 				settings.output = data.getOutput();
@@ -105,6 +109,7 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 	public TaskConfiguration clone() {
 		TaskConfiguration newConfiguration = (TaskConfiguration) super.clone();
 		newConfiguration.className = className;
+		newConfiguration.url = url;
 		newConfiguration.cppPath = cppPath;
 		newConfiguration.input = input;
 		newConfiguration.output = output;
@@ -138,6 +143,7 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 	public void readExternal(@NotNull Element element) {
 		super.readExternal(element);
 		className = element.getAttributeValue("className", "");
+		url = element.getAttributeValue("url", "");
 		cppPath = element.getAttributeValue("cppPath", "");
 		input = readStreamConfiguration(element, "inputPath", "inputFile");
 		output = readStreamConfiguration(element, "outputPath", "outputFile");
@@ -170,6 +176,7 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 	@Override
 	public void writeExternal(Element element) {
 		element.setAttribute("className", className);
+		element.setAttribute("url", url);
 		element.setAttribute("cppPath", cppPath);
 		element.setAttribute("inputType", input.type.name());
 		if (input.fileName != null) {
@@ -199,6 +206,7 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 	public void setFromTaskData(TaskData data) {
 		setName(data.getName());
 		className = data.getClassName();
+        url = data.getUrl();
 		cppPath = data.getCppPath();
 		input = data.getInput();
 		output = data.getOutput();
@@ -213,6 +221,8 @@ public class TaskConfiguration extends RunConfigurationBase implements OCRunConf
 	public Test[] getTests() {
 		return Arrays.copyOf(tests, tests.length);
 	}
+
+    public String getUrl() { return url; }
 
 	public String getCppPath() {
 		return cppPath;

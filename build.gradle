@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'name.admitriev.jhelper'
-version '0.19'
+version '0.20'
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public/' }
@@ -25,13 +25,19 @@ runIde {
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
     implementation fileTree(dir: 'lib', include: 'chelper.jar')
-    implementation("com.google.guava:guava:29.0-jre")
+    implementation('com.google.guava:guava:31.0.1-jre')
+    implementation('com.google.code.gson:gson:2.8.9')
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2021.1'
-    plugins = ['com.intellij.clion', 'com.intellij.cidr.base', 'com.intellij.cidr.lang']
+    plugins = [
+            'com.intellij.clion',
+            'com.intellij.cidr.base',
+            'com.intellij.cidr.lang',
+            'org.jetbrains.plugins.terminal'
+    ]
     updateSinceUntilBuild false
     type 'CL'
 }

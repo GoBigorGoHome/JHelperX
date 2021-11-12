@@ -207,6 +207,7 @@ public class ParseDialog extends DialogWrapper {
 			}
 			TaskData myTask = new TaskData(
 					rawTask.name,
+					"",
 					rawTask.taskClass,
 					String.format("%s/%s.cpp", path, rawTask.taskClass),
 					rawTask.input,

@@ -13,6 +13,7 @@ import java.util.Arrays;
  */
 public class TaskData {
 	private final String name;
+	private final String url;
 	private final String className;
 	private final String cppPath;
 	private final StreamConfiguration input;
@@ -22,6 +23,7 @@ public class TaskData {
 
 	public TaskData(
 			String name,
+			String url,
 			String className,
 			String cppPath,
 			StreamConfiguration input,
@@ -32,6 +34,7 @@ public class TaskData {
 		this.input = input;
 		this.output = output;
 		this.name = name;
+		this.url = url;
 		this.className = className;
 		this.cppPath = cppPath;
 		this.testType = testType;
@@ -39,11 +42,15 @@ public class TaskData {
 	}
 
 	public TaskData(TaskData task) {
-		this(task.name, task.className, task.cppPath, task.input, task.output, task.testType, task.tests);
+		this(task.name, task.url, task.className, task.cppPath, task.input, task.output, task.testType, task.tests);
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public String getUrl() {
+		return url;
 	}
 
 	public String getClassName() {
@@ -68,6 +75,7 @@ public class TaskData {
 
 	public static TaskData emptyTaskData(Project project) {
 		return new TaskData(
+				"",
 				"",
 				"",
 				String.format(defaultCppPathFormat(project), ""),
