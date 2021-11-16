@@ -7,7 +7,6 @@ import com.intellij.openapi.util.NotNullLazyValue;
 import name.admitriev.jhelper.icons.JhelperIcons;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
 
 public class TaskConfigurationType extends SimpleConfigurationType {
 	public TaskConfigurationType() {
@@ -15,13 +14,7 @@ public class TaskConfigurationType extends SimpleConfigurationType {
 				"name.admitriev.jhelper.configuration.TaskConfigurationType",
 				"Task",
 				"Task for JHelper",
-				new NotNullLazyValue<>() {
-					@NotNull
-					@Override
-					protected Icon compute() {
-						return JhelperIcons.TaskIcon;
-					}
-				}
+				NotNullLazyValue.lazy(() -> JhelperIcons.TaskIcon)
 		);
 	}
 
