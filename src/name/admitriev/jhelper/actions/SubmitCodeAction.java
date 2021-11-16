@@ -52,7 +52,12 @@ public class SubmitCodeAction extends BaseAction {
             throw new NotificationException("Couldn't find output file");
         TerminalView terminalView = TerminalView.getInstance(project);
         String url = ((TaskConfiguration) runConfiguration).getUrl();
-        String command = "oj s --wait=0 --yes " + url + " " + file.getPath();
+        String command;
+        if (url.startsWith("https://codeforces")) {
+            command = "cf submit -f " + file.getPath() + " " + url;
+        } else {
+            command = "oj s --wait=0 --yes " + url + " " + file.getPath();
+        }
         try {
             terminalView.createLocalShellWidget(project.getBasePath(), "Submit").executeCommand(command);
         } catch (IOException err) {
