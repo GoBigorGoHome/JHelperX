@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'name.admitriev.jhelper'
-version '0.21'
+version '0.21.2'
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public/' }
