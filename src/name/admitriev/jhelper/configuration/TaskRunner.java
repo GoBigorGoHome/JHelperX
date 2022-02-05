@@ -96,6 +96,7 @@ public class TaskRunner implements ProgramRunner<RunnerSettings> {
 		}
 
 		CodeGenerationUtils.generateRunFile(project, psiFile, taskConfiguration);
+		CodeGenerationUtils.generateCurrentTaskFile(project, psiFile);
 	}
 
 	@Nullable

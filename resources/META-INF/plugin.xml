@@ -7,7 +7,7 @@
     <description>Sport programming tool to inline library code and provide testing framework.</description>
 
     <change-notes>
-        Reuse terminal terminal session when submitting code.
+        Separate compilation of task file from testrunner/main.cpp.
     </change-notes>
 
     <idea-version since-build="203.3645.34"/>

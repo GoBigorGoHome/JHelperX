@@ -56,6 +56,34 @@ public class CodeGenerationUtils {
 		);
 	}
 
+	/**
+	 * Generates main function for testing purposes.
+	 *
+	 * @param project Project to get configuration from
+	 */
+	public static void generateCurrentTaskFile(
+			@NotNull Project project,
+			@NotNull PsiFile inputFile
+	) {
+		if (!FileUtils.isCppFile(inputFile)) {
+			throw new NotificationException("Not a cpp file", "Only cpp files are currently supported");
+		}
+
+		PsiFile psiCurrentTaskFile = getCurrentTaskFile(project);
+
+		FileUtils.writeToFile(
+				psiCurrentTaskFile,
+				generateCurrentTaskFileContent(
+						project,
+						FileUtil.getRelativePath(
+								psiCurrentTaskFile.getVirtualFile().getParent().getPath(),
+								inputFile.getVirtualFile().getPath(),
+								'/'
+						)
+				)
+		);
+	}
+
 	private static void generateSubmissionFile(
 			@NotNull Project project,
 			@NotNull PsiFile inputFile,
@@ -98,6 +126,12 @@ public class CodeGenerationUtils {
 				TemplatesUtils.SOLVER_CALL,
 				generateSolverCall(task.getTestType())
 		);
+		return template;
+	}
+
+	private static String generateCurrentTaskFileContent(Project project, String path) {
+		String template = TemplatesUtils.getTemplate(project, "current_task");
+		template = TemplatesUtils.replaceAll(template, TemplatesUtils.TASK_FILE, path);
 		return template;
 	}
 
@@ -258,6 +292,23 @@ public class CodeGenerationUtils {
 			throw new NotificationException(
 					"No run file found.",
 					"You should configure run file to point to existing file"
+			);
+		}
+
+		PsiFile psiOutputFile = PsiManager.getInstance(project).findFile(outputFile);
+		if (psiOutputFile == null) {
+			throw new NotificationException("Couldn't open run file as PSI");
+		}
+		return psiOutputFile;
+	}
+
+	@NotNull
+	private static PsiFile getCurrentTaskFile(Project project) {
+		VirtualFile outputFile = IDEUtils.getBaseDir(project).findFileByRelativePath("testrunner/current_task.cpp");
+		if (outputFile == null) {
+			throw new NotificationException(
+					"File testrunner/current_task.cpp not found.",
+					"You should create the file."
 			);
 		}
 
