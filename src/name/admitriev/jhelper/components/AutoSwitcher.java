@@ -3,7 +3,6 @@ package name.admitriev.jhelper.components;
 import com.intellij.execution.RunManagerListener;
 import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.RunConfiguration;
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.project.Project;
@@ -21,7 +20,7 @@ public class AutoSwitcher implements FileEditorManagerListener, RunManagerListen
 
     @Override
     public void selectionChanged(@NotNull FileEditorManagerEvent event) {
-        AutoSwitcherService autoSwitcherService = ServiceManager.getService(project, AutoSwitcherService.class);
+        AutoSwitcherService autoSwitcherService = project.getService(AutoSwitcherService.class);
         autoSwitcherService.selectTask(event.getNewFile());
     }
 
@@ -34,7 +33,7 @@ public class AutoSwitcher implements FileEditorManagerListener, RunManagerListen
         if (!(configuration instanceof TaskConfiguration)) {
             return;
         }
-        AutoSwitcherService autoSwitcherService = ServiceManager.getService(project, AutoSwitcherService.class);
+        AutoSwitcherService autoSwitcherService = project.getService(AutoSwitcherService.class);
         if (autoSwitcherService.isBusy()) {
             return;
         }
