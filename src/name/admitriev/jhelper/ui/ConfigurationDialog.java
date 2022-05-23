@@ -50,7 +50,7 @@ public class ConfigurationDialog extends DialogWrapper {
 		panel.add(LabeledComponent.create(author, "Author"));
 		panel.add(LabeledComponent.create(tasksDirectory, "Tasks directory"));
 		panel.add(LabeledComponent.create(outputFile, "Output file"));
-		panel.add(LabeledComponent.create(runFile, "Run File"));
+		panel.add(LabeledComponent.create(runFile, "Run file"));
 		panel.add(codeEliminationOn);
 		panel.add(codeReformattingOn);
 
