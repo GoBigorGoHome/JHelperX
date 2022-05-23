@@ -6,7 +6,7 @@ import com.intellij.openapi.components.Storage;
 import org.jetbrains.annotations.NotNull;
 
 
-@State(name = "Configurator", storages = @Storage("/JHelper.xml"))
+@State(name = "Configurator", storages = @Storage("JHelper.xml"))
 public class Configurator implements PersistentStateComponent<Configurator.State> {
 	public Configurator() {
 		state = new Configurator.State();
