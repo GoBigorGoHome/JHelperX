@@ -7,7 +7,7 @@
     <description>Sport programming tool to inline library code and provide testing framework.</description>
 
     <change-notes>
-        Fix configuration saving.
+        Fix code submission action.
     </change-notes>
 
     <idea-version since-build="203.3645.34"/>

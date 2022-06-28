@@ -71,10 +71,17 @@ public class SubmitCodeAction extends BaseAction {
 
         String url = ((TaskConfiguration) runConfiguration).getUrl();
         String command;
-        if (url.startsWith("https://codeforces")) {
+        if (url.contains("codeforces")) {
             command = "cf submit -f " + file.getPath() + " " + url;
-        } else {
+        } else if (url.contains("atcoder")) {
             command = "oj s --wait=0 --yes " + url + " " + file.getPath();
+        } else {
+            Notificator.showNotification(
+                    "Unsupported website: " + url,
+                    "Only submission to Codeforces or AtCoder are supported now.",
+                    NotificationType.WARNING
+            );
+            return;
         }
 
         ContentManager contentManager = window.getContentManager();
