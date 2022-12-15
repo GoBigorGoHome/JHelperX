@@ -10,7 +10,7 @@
         Fix code submission action.
     </change-notes>
 
-    <idea-version since-build="203.3645.34"/>
+    <idea-version since-build="222.4345.21"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.cidr.lang</depends>

@@ -1,10 +1,10 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.5.3'
+    id 'org.jetbrains.intellij' version '1.10.0'
 }
 
 group 'name.admitriev.jhelper'
-version '0.21.5'
+version '0.21.6'
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public/' }
@@ -26,12 +26,12 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
     implementation fileTree(dir: 'lib', include: 'chelper.jar')
     implementation('com.google.guava:guava:31.1-jre')
-    implementation('com.google.code.gson:gson:2.9.0')
+    implementation('com.google.code.gson:gson:2.10')
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version = '2022.1.1'
+    version = '2022.2.4'
     plugins = [
             'com.intellij.clion',
             'com.intellij.cidr.base',
@@ -40,6 +40,10 @@ intellij {
     ]
     updateSinceUntilBuild = false
     type = 'CL'
+}
+
+patchPluginXml {
+    changeNotes = "Target 2022.3"
 }
 
 allprojects {
