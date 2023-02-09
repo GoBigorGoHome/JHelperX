@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.10.0'
+    id 'org.jetbrains.intellij' version '1.12.0'
 }
 
 group 'name.admitriev.jhelper'
@@ -31,7 +31,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version = '2022.2.4'
+    version = '2022.3.2'
     plugins = [
             'com.intellij.clion',
             'com.intellij.cidr.base',
@@ -44,6 +44,7 @@ intellij {
 
 patchPluginXml {
     changeNotes = "Target 2022.3"
+    sinceBuild = "223.8617.54"
 }
 
 allprojects {

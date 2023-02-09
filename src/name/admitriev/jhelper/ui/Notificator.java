@@ -12,7 +12,7 @@ public class Notificator {
 	}
 
 	public static void showNotification(String title, String content, NotificationType notificationType) {
-		GROUP.createNotification(title, content, notificationType, null).notify(null);
+		GROUP.createNotification(title, content, notificationType).notify(null);
 	}
 
 	public static void showNotification(String content, NotificationType notificationType) {
