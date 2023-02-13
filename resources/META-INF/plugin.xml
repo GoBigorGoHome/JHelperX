@@ -19,7 +19,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <configurationType implementation="name.admitriev.jhelper.configuration.TaskConfigurationType"/>
-        <programRunner implementation="name.admitriev.jhelper.configuration.TaskRunner"/>
+        <programRunner implementation="name.admitriev.jhelper.configuration.TaskRunner" order="first"/>
         <executionTargetProvider implementation="name.admitriev.jhelper.configuration.TaskConfigurationTargetProvider"/>
         <notificationGroup id="JHelper" displayType="BALLOON"/>
         <projectService serviceImplementation="name.admitriev.jhelper.components.Configurator"/>

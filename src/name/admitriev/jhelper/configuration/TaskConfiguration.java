@@ -4,11 +4,13 @@ import com.intellij.execution.ExecutionTarget;
 import com.intellij.execution.Executor;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.RunConfiguration;
-import com.intellij.execution.configurations.RunConfigurationBase;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.project.Project;
+import com.jetbrains.cidr.cpp.execution.*;
 import com.jetbrains.cidr.execution.CidrCommandLineState;
+import com.jetbrains.cidr.lang.workspace.OCResolveConfiguration;
+import com.jetbrains.cidr.lang.workspace.OCRunConfiguration;
 import name.admitriev.jhelper.exceptions.JHelperException;
 import name.admitriev.jhelper.task.TaskData;
 import name.admitriev.jhelper.ui.TaskSettingsComponent;
@@ -27,7 +29,7 @@ import java.util.Objects;
 /**
  * Run Configuration for running JHelper tasks
  */
-public class TaskConfiguration extends RunConfigurationBase /*implements OCRunConfigurationWithResolveConfiguration*/ {
+public class TaskConfiguration extends OCRunConfiguration {
 	private String className;
 	private String url;
 	private String cppPath;
@@ -112,6 +114,11 @@ public class TaskConfiguration extends RunConfigurationBase /*implements OCRunCo
 		newConfiguration.testType = testType;
 		newConfiguration.tests = tests.clone();
 		return newConfiguration;
+	}
+
+	@Override
+	public @NotNull CMakeBuildConfigurationHelper getHelper() {
+		return CMakeRunConfigurationType.getHelper(this.getProject());
 	}
 
 	private static StreamConfiguration readStreamConfiguration(
@@ -240,12 +247,12 @@ public class TaskConfiguration extends RunConfigurationBase /*implements OCRunCo
 		return output;
 	}
 
-/*	@Override
+	@Override
 	public @Nullable OCResolveConfiguration getResolveConfiguration(@NotNull ExecutionTarget executionTarget) {
 		if (executionTarget instanceof TaskConfigurationExecutionTarget) {
 			CMakeAppRunConfiguration cmakeAppRunConfiguration = (CMakeAppRunConfiguration) Objects.requireNonNull(TaskRunner.getRunnerSettings(getProject())).getConfiguration();
 			return CMakeRunConfigurationUtil.getResolveConfiguration(cmakeAppRunConfiguration, ((TaskConfigurationExecutionTarget) executionTarget).getOriginalTarget());
 		}
 		return null;
-	}*/
+	}
 }
